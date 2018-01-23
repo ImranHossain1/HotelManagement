@@ -1,0 +1,76 @@
+﻿@model EntityLayer.UserBalance
+
+@{
+    ViewBag.Title = "EditUserBalance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditUserBalance</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>UserBalance</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserBalanceId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerId, "CustomerId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control", type = "hidden" } })
+                @Html.DisplayFor(model => model.CustomerId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Customer.CustomerName, "CustomerName", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Customer.CustomerName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserBalanceAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserBalanceAmount, new { htmlAttributes = new { @class = "form-control", type = "hidden" } })
+                @Html.DisplayFor(model => model.UserBalanceAmount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Paid, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Paid, new { htmlAttributes = new { @class = "form-control" , id="paid", name = "paid" } })
+                @Html.ValidationMessageFor(model => model.Paid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RemainingAcount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" id="remaining" name="remaining">@Model.RemainingAcount</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "UserBalances")
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#paid").keyup(function () {
+            re
+        })
+    });
+</script>

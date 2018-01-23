@@ -1,0 +1,71 @@
+﻿@model IEnumerable<EntityLayer.UserBalance>
+
+@{
+    ViewBag.Title = "UserBalances";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UserBalances</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.CustomerContactNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserBalanceAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RemainingAcount)
+        </th>
+        <th></th>
+    </tr>
+   
+            @try
+            {
+
+               
+                    foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer.CustomerName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer.CustomerContactNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserBalanceAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Paid)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RemainingAcount)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditUserBalance", new { id = item.UserBalanceId }) |
+                            @Html.ActionLink("Details", "DetailsUserBalance", new { id = item.UserBalanceId }) |
+                        </td>
+                    </tr>
+                    }
+                
+                    }
+           catch (Exception ex)
+                {
+                    Console.Write(ex);
+                }
+</table>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<EntityLayer.Booking>
+
+@{
+    ViewBag.Title = "Bookings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bookings</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateBooking")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.CustomerContactNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomAvId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </th>
+        <th></th>
+    </tr>
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.CustomerContactNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomAvId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalCost)
+                </td>
+                <td>
+                   
+                    @Html.ActionLink("Details", "DetailsBooking", new { id = item.CustomerId })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

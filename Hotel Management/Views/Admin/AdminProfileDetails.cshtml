@@ -1,0 +1,76 @@
+﻿@model EntityLayer.Admin
+
+@{
+    ViewBag.Title = "AdminProfileDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AdminProfileDetails</h2>
+
+<div>
+    <h4>Admin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminContactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminContactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Thana)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Thana)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.District)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.District)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostelCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostelCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "AdminProfileEdit", new { id = Model.AdminId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

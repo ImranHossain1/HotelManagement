@@ -1,0 +1,56 @@
+﻿@model IEnumerable<EntityLayer.Room>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rooms</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "CreateRoom")
+    </p>
+    <table class="table table-hover table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Catagory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rent)
+            </th>
+            
+            <th>
+                Operations
+            </th>
+        </tr>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Catagory)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rent)
+                    </td>
+                    
+                    <td>
+                        @Html.ActionLink("Edit", "EditRoom", new { id = item.RoomId }) |
+                        @Html.ActionLink("Details", "DetailsRoom", new { id = item.RoomId }) |
+                        @Html.ActionLink("Delete", "DeleteRoom", new { id = item.RoomId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</body>
+</html>

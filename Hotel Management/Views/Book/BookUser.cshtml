@@ -1,0 +1,158 @@
+﻿@model EntityLayer.Customer
+@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            $("#CheckIn").datepicker();
+            $("#CheckOut").datepicker();
+        });
+
+        function catagory() {
+            debugger;
+
+
+                $.ajax({
+                    url: '@Url.Action("Show","DemoAjax")',
+                    type: 'POST',
+                    data: { type: $('#catagory').val },
+                    success: function () {
+                        alert("success");
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+                return false;
+        }
+    </script>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/font-awesome/css")
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">AIUB</h1>
+
+            </div>
+            <h3>Welcome to AIUB</h3>
+
+            <p>Login in To Admin Panel</p>
+            <form class="m-t" method="post">
+
+                <div class="form-horizontal">
+                    <h4>User</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "User Name", required = "" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.UserEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Email (Optional)" } })
+                            @Html.ValidationMessageFor(model => model.UserEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Contact number", required = "" } })
+                            @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TotalMembers, new { htmlAttributes = new { @class = "form-control", placeholder = "Number of Members", required = "" } })
+                            @Html.ValidationMessageFor(model => model.TotalMembers, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            <select class="form-control" id="catagory">
+                                @try
+                                {
+                                    foreach (var i in ViewBag.SelectedCatagory)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                    foreach (var v in ViewBag.Catagory)
+                                    {
+                                        <option value="@v">@v</option>
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine(ex.ToString());
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CheckIn, new { htmlAttributes = new { @class = "form-control", placeholder = "Check In Date", id = "CheckIn", required = "" } })
+                            @Html.ValidationMessageFor(model => model.CheckIn, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CheckOut, new { htmlAttributes = new { @class = "form-control", placeholder = "Check Out Date", id = "CheckOut", required = "" } })
+                            @Html.ValidationMessageFor(model => model.CheckOut, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-5">
+                            <input type="submit" value="Create" class="btn btn-danger" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-5">
+                            <a href="/Home/Index"><small>Back to Home</small></a>
+                        </div>
+                    </div>
+                </div> 
+            </form>
+            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2015</small> </p>
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        
+    </div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<EntityLayer.Customer>
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateCustomer")
+</p>
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerContactNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomNeeded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArrivaleTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nights)
+        </th>
+        <th></th>
+    </tr>
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerContactNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNeeded)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivaleTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nights)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditCustomer", new { id = item.CustomerId }) |
+                    @Html.ActionLink("Details", "DetailsCustomer", new { id = item.CustomerId }) |
+                    @Html.ActionLink("Delete", "DeleteCustomer", new { id = item.CustomerId })|
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

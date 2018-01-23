@@ -1,0 +1,240 @@
+﻿@model EntityLayer.Customer
+@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.bootstrap.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.bootstrap.js"></script>
+    <title>Book</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+   
+
+    <script>
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/M/yy",
+                changeMonth: true,
+                changeYear: true,
+                minDate: "0",
+                maxDate: "+20",
+                yearRange: "0:+10"
+            });
+
+        });
+       
+
+        /*$(document).ready(function () {
+            $("#catagory").change(function () {
+                catagory = $("#catagory").val();
+                $.ajax({
+                    type: "post",
+                    url: "GetRoom",
+                    data: { catagory: catagory },
+                    success: function (data) {
+                        $("#result").html(data.result.length + " Rooms are available");
+                    }
+                });
+            })
+        });*/
+
+        $(function () {
+            $("#catagory").change(function () {
+                $.ajax({
+                    url: "http://localhost:13533/api/roomav/Search/" + $('#catagory  option:selected').text() ,
+                    method: 'GET',
+                    success: function (data) {
+                        $("#result").html(data.length + " Rooms are available");
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $("#rn").keyup(function () {
+                catagory = $("#catagory").val();
+                rn = $("#rn").val();
+                $.ajax({
+                    type: "post",
+                    url: "GetRoom",
+                    data: { catagory: catagory },
+                    success: function (data) {
+                        if (rn > data.result.length) {
+                            $("#limit").html("<font color=red>Limit Exceeds</font>");
+                            $("#create").hide();
+                        }
+                        else {
+                            $("#limit").html("<font color=green></font>");
+                            $("#create").show();
+                        }
+                    }
+                });
+            })
+        });
+    </script>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/font-awesome/css")
+    <style>
+        .error{
+            color:red;
+        }
+        </style>
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">AIUB</h1>
+
+            </div>
+            <h3>Welcome to AIUB</h3>
+
+            <p>Login in To Admin Panel</p>
+            <form class="m-t" method="post">
+
+                <div class="form-horizontal">
+                    <h4>User</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+
+                        <div class="col-md-20">
+                            @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control", placeholder = "Full Name", required = "" } })
+                            @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "error" })
+                        </div>
+                        
+                    </div>
+                   
+                    <div class="form-group">
+
+                        <div class="col-md-20">
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", placeholder = "Please enter a unique username", required = "", onchange = "UserCheck()" } })
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-2"></label>
+                        <div class="col-sm-10">
+                            <p id="Status" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-md-20">
+                            @Html.EditorFor(model => model.CustomerEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Email (Optional)", type="email"} })
+                            @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-20">
+                            @Html.EditorFor(model => model.CustomerContactNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Contact number", required = "" } })
+                            @Html.ValidationMessageFor(model => model.CustomerContactNumber, "", new { @class = "error" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-20">
+                            <select class="form-control" id="catagory" name="catagory">
+                                @try
+                                {
+                                    foreach (var i in ViewBag.SelectedCatagory)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                    foreach (var v in ViewBag.Catagory)
+                                    {
+                                        <option value="@v">@v</option>
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine(ex.ToString());
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-20">
+                            @Html.EditorFor(model => model.RoomNeeded, new { htmlAttributes = new { @class = "form-control", placeholder = "How much room you want to book?", id="rn", required = "" } }) <span id="result"></span> <span id="limit"></span>
+                            @Html.ValidationMessageFor(model => model.RoomNeeded, "", new { @class = "errorr" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-20">
+                            @Html.EditorFor(model => model.ArrivaleTime, new { htmlAttributes = new { @class = "form-control", @readonly = "true", placeholder = "Your Arraival Time" } })
+                            @Html.ValidationMessageFor(model => model.ArrivaleTime, "", new { @class = "error" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-md-20">
+                            @Html.EditorFor(model => model.Nights, new { htmlAttributes = new { @class = "form-control", placeholder = "How many Days Will you stay", required = "" } })
+                            @Html.ValidationMessageFor(model => model.Nights, "", new { @class = "error" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-7">
+                            <input type="submit" value="Create" class="btn btn-danger" hidden="hidden" id="create"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-5">
+                            <a href="/Home/Index"><small>Back to Home</small></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+    function UserCheck() {
+        $("#Status").html("Checking...");
+        $.post("@Url.Action("CheckUsernameAvailability", "Customer")",
+            {
+                userdata: $("#Username").val()
+            },
+        function (data) {
+            if (data == 0) {
+                $("#Status").html('<font color="Green">Available !. you can take it.</font>');
+                $("#Username").css("border-color", "Green");
+                $("#create").hide();
+            }
+            else {
+                $("#Status").html('<font color="Red">That name is taken.Try Another.</font>');
+                $("#Username").css("border-color", "Red");
+                $("#create").show();
+            }
+        });
+    }
+    </script>
+</body>
+
+</html>

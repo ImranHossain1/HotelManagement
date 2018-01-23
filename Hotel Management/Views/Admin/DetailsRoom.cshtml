@@ -1,0 +1,41 @@
+﻿@model EntityLayer.Room
+
+@{
+    ViewBag.Title = "DetailsRoom";
+}
+
+<h2>DetailsRoom</h2>
+
+<div>
+    <h4>Room</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RoomId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Catagory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catagory)
+        </dd>
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rent)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditRoom", new { id = Model.RoomId }) |
+    @Html.ActionLink("Back to List", "Rooms")
+</p>

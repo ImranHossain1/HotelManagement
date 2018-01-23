@@ -1,0 +1,85 @@
+﻿@model EntityLayer.UserBalance
+
+@{
+    ViewBag.Title = "Balancesheet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Balancesheet</h2>
+
+<div>
+    <h4>UserBalance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserBalanceAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserBalanceAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RemainingAcount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RemainingAcount)
+        </dd>
+
+    </dl>
+</div>
+
+<form method="post">
+    <div>
+        <div><input type="number" class="form-control" id="paid" name="paid" /></div>
+        <div id="remaining" name="remaining"></div>
+    </div>
+
+    <div><input type="submit" value="Update" class="btn btn-default" /></div>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Bookings")
+</div>
+
+<script>
+    $(document).ready(function () {
+            $("#p").change(function () {
+                paid = $("#paid").val();
+                cid = $("#cid").val();
+                $.ajax({
+                    type: "post",
+                    url: "UpdateCustomerBalance",
+                    data: { paid: paid, cid: cid },
+                    success: function (data) {
+                        $("#remaining").html(data.result);
+                    }
+                });
+            })
+        });
+</script>

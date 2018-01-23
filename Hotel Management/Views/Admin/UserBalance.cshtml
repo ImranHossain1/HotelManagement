@@ -1,0 +1,107 @@
+﻿@model EntityLayer.Booking
+
+<style>
+    p.center {
+        text-align: center;
+        color: blue;
+    }
+
+    p.large {
+        font-size: 200%;
+    }
+    p.ul {
+        text-decoration: underline;
+        font-size: 250%;
+        color: green;
+        text-align: center;
+    }
+</style>
+<p class="center large">@Html.DisplayFor(model => model.UserName)</p>
+<p class="center large">@Html.DisplayFor(model => model.ContactNumber)</p>
+<p class="center large">@Html.DisplayFor(model => model.UserEmail)</p>
+<p class="center large">@Html.DisplayFor(model => model)</p>
+<p class="ul">Balance Sheet</p>
+
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalMembers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalMembers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomNeeded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomNeeded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Catagory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catagory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditBook", new { id = Model.BookId }) |
+    @Html.ActionLink("Back to List", "Books")
+</p>

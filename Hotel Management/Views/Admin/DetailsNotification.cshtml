@@ -1,0 +1,77 @@
+﻿@model EntityLayer.Customer
+
+@{
+    ViewBag.Title = "DetailsNotification";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DetailsNotification</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerContactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerContactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Catagory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catagory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomNeeded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomNeeded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArrivaleTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArrivaleTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nights)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nights)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Book", "BookCustomer", new { id = Model.CustomerId }) |
+    @Html.ActionLink("Go To Customer List", "Customers") |
+    @Html.ActionLink("Back to List", "Notifications")
+</p>

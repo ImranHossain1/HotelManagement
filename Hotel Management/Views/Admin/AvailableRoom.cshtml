@@ -1,0 +1,54 @@
+﻿@model IEnumerable<EntityLayer.RoomAvModel>
+
+@{
+    ViewBag.Title = "AvailableRoom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AvailableRoom</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateRoomAv")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Room Number
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Catagory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Availability)
+        </th>
+        <th></th>
+    </tr>
+    <tbody id="myTable">
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.RoomAvId
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Catagory)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Rent)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Availability)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditRoomAv", new { id = item.RoomAvId }) |
+                    @Html.ActionLink("Details", "DetailsRoomAv", new { id = item.RoomAvId }) |
+                    @Html.ActionLink("Delete", "DeleteRoomAv", new { id = item.RoomAvId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

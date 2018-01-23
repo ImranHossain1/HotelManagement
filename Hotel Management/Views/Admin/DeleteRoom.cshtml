@@ -1,0 +1,50 @@
+﻿@model EntityLayer.Room
+
+@{
+    ViewBag.Title = "DeleteRoom";
+}
+
+<h2>DeleteRoom</h2>
+
+<h3><font color="Red">Are you sure you want to delete this?</font></h3>
+<div>
+    <h4>Room</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Catagory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catagory)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rent)
+        </dd>
+
+       
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-warning block full-width m-b" /> |
+            @Html.ActionLink("Back to List", "Rooms")
+        </div>
+    }
+</div>

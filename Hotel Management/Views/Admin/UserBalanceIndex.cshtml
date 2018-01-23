@@ -1,0 +1,73 @@
+﻿@model IEnumerable<EntityLayer.UserBalanceModel>
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UserBalanceIndex</title>
+</head>
+<body>
+   
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserBalanceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.UserBalanceAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RemainingAcount)
+            </th>
+   
+            <th></th>
+        </tr>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserBalanceId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookingId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserBalanceAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Paid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RemainingAcount)
+                    </td>
+
+
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.UserBalanceModelId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.UserBalanceModelId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.UserBalanceModelId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+</table>
+</body>
+</html>

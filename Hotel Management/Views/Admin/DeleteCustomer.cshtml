@@ -1,0 +1,81 @@
+﻿@model EntityLayer.Customer
+
+@{
+    ViewBag.Title = "DeleteCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DeleteCustomer</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomAvs.RoomAvId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomAvs.RoomAvId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerContactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerContactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomNeeded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomNeeded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArrivaleTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArrivaleTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nights)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nights)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Customers")
+        </div>
+    }
+</div>

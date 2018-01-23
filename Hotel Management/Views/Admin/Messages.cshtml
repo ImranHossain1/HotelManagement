@@ -1,0 +1,61 @@
+﻿@model IEnumerable<EntityLayer.Message>
+
+@{
+    ViewBag.Title = "Messages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Messages</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SenderName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SenderEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SenderPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MessageBody)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seen)
+        </th>
+        <th></th>
+    </tr>
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SenderName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SenderEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SenderPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessageBody)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seen)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "DetailsMessage", new { id = item.MessageId }) |
+                    @Html.ActionLink("Delete", "DeleteMessage", new { id = item.MessageId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

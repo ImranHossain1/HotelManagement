@@ -1,0 +1,43 @@
+﻿@model IEnumerable<EntityLayer.Notification>
+
+@{
+    ViewBag.Title = "Notifications";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Notifications</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seen)
+        </th>
+        <th></th>
+    </tr>
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seen)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "DetailsNotification", new { id = item.CustomerId }) |
+                    @Html.ActionLink("Delete", "DeleteNotification", new { id = item.NotificationId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

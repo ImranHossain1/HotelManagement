@@ -1,0 +1,54 @@
+﻿@model EntityLayer.RoomAvModel
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DetailsRoomAv</title>
+</head>
+<body>
+    <div>
+        <h4>Room Number :@Html.DisplayFor(model => model.RoomAvId)</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Room Number
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RoomAvId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Catagory)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Catagory)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Rent)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Rent)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Availability)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Availability)
+            </dd>
+    
+           
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "EditRoomAv", new { id = Model.RoomAvId }) |
+        @Html.ActionLink("Back to List", "AvailableRoom")
+    </p>
+</body>
+</html>

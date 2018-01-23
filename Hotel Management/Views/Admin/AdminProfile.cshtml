@@ -1,0 +1,56 @@
+﻿@model IEnumerable<EntityLayer.Admin>
+
+@{
+    ViewBag.Title = "AdminProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AdminProfile</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateAdmin")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminContactNumber)
+        </th>     
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        
+        <th></th>
+    </tr>
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdminName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdminEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdminContactNumber)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "AdminProfileEdit", new { id = item.AdminId }) |
+                    @Html.ActionLink("Details", "AdminProfileDetails", new { id = item.AdminId }) |
+                    @Html.ActionLink("Delete", "AdminProfileDelete", new { id = item.AdminId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
